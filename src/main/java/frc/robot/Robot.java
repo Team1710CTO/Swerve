@@ -29,6 +29,7 @@ public class Robot extends TimedRobot {
   private static final String kCustomAuto = "My Auto";
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
+  public static XboxController controller;
 
   /**
    * This function is run when the robot is first started up and should be
@@ -39,6 +40,13 @@ public class Robot extends TimedRobot {
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
+    final WheelDrive backRight = new WheelDrive (0, 1, 0);
+    final WheelDrive backLeft = new WheelDrive (2, 3, 1);
+    final WheelDrive frontRight = new WheelDrive (4, 5, 2);
+    final WheelDrive frontLeft = new WheelDrive (6, 7, 3);
+
+    final SwerveDrive SwerveDrive = new SwerveDrive (backRight, backLeft, frontRight, frontLeft);
+    final XboxController controller = new XboxController(0);
   }
 
   /**
@@ -92,6 +100,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
+    SwerveDrive.drive (controller.getX(Hand.kLeft), controller.getY(Hand.kLeft), controller.getX(Hand.kRight));
   }
 
   /**
