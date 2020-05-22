@@ -40,10 +40,10 @@ public class Robot extends TimedRobot {
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
-    final WheelDrive backRight = new WheelDrive (0, 1, 0);
-    final WheelDrive backLeft = new WheelDrive (2, 3, 1);
-    final WheelDrive frontRight = new WheelDrive (4, 5, 2);
-    final WheelDrive frontLeft = new WheelDrive (6, 7, 3);
+    final WheelDrive backRight = new WheelDrive (2, 3, 0);
+    final WheelDrive backLeft = new WheelDrive (4, 5, 1);
+    final WheelDrive frontRight = new WheelDrive (6, 7, 2);
+    final WheelDrive frontLeft = new WheelDrive (8, 9, 3);
 
     final SwerveDrive SwerveDrive = new SwerveDrive (backRight, backLeft, frontRight, frontLeft);
     final XboxController controller = new XboxController(0);
