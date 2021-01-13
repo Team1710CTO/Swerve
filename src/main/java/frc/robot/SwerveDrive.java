@@ -20,19 +20,19 @@ import java.lang.Math;
 public class SwerveDrive {
     public final static double L = 23;
     public final static double W = 23;
-    private static WheelDrive backRight;
-    private static WheelDrive backLeft;
-    private static WheelDrive frontRight;
-    private static WheelDrive frontLeft;
+    public static WheelDrive backRight;
+    public static WheelDrive backLeft;
+    public static WheelDrive frontRight;
+    public static WheelDrive frontLeft;
 
     public SwerveDrive(WheelDrive backRight, WheelDrive backLeft, WheelDrive frontRight, WheelDrive frontLeft) {
-        this.backRight = backRight;
-        this.backLeft = backLeft;
-        this.frontRight = frontRight;
-        this.frontLeft = frontLeft;
+        SwerveDrive.backRight = backRight;
+        SwerveDrive.backLeft = backLeft;
+        SwerveDrive.frontRight = frontRight;
+        SwerveDrive.frontLeft = frontLeft;
     }
 
-    public static void drive(double x1, double y1, double x2) {
+    public void drive(double x1, double y1, double x2) {
         double r = Math.sqrt((L * L) + (W * W));
         y1 *= -1;
 

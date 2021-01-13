@@ -9,6 +9,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.PIDController;
 import com.kauailabs.navx.frc.AHRS;
@@ -29,10 +30,10 @@ public class WheelDrive {
     public WheelDrive (int angleMotor, int speedMotor, int encoder) {
         this.angleMotor = new CANSparkMax (angleMotor, MotorType.kBrushless);
         this.speedMotor = new CANSparkMax (speedMotor, MotorType.kBrushless);
-        pidController = new PIDController (1, 0, 0, new AnalogInput (encoder), this.angleMotor);
+        pidController = new PIDController (.01, 0, 0, new AnalogInput (encoder), this.angleMotor);
     
         pidController.setOutputRange (-1, 1);
-        pidController.setContinuous ();
+        //pidController.setContinuous (true);
         pidController.enable ();
     }
     public void drive (double speed, double angle) {
@@ -45,7 +46,8 @@ public class WheelDrive {
         if (setpoint > MAX_VOLTS) {
             setpoint = setpoint - MAX_VOLTS;
         }
-    
+        SmartDashboard.putNumber("out", pidController.getSetpoint());
+        
         pidController.setSetpoint (setpoint);
     }
 }
